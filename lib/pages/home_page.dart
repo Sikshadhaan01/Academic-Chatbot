@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_new/pages/chat_page.dart';
 import 'package:flutter_new/pages/teacher_page.dart';
 import 'package:flutter_new/pages/topics_page.dart';
+import 'package:stories_for_flutter/stories_for_flutter.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -23,102 +24,201 @@ class HomePage extends StatelessWidget {
       //     automaticallyImplyLeading: false,
       //     centerTitle: true,
       //     backgroundColor: Color.fromARGB(255, 70, 192, 151)),
-      body: Container(color: const Color(0xffbe74ff),
+      body: Container(
+        color: const Color(0xffbe74ff),
         width: double.infinity,
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Container( 
-                //decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/19199098.jpg"),fit: BoxFit.cover)),
-               height: 200,),
+              const SizedBox(height: 20),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  userType == "Teacher"
+                      ? FloatingActionButton(
+                          shape: const CircleBorder(side: BorderSide()),
+                          backgroundColor: const Color(0xffeecfff),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const TeacherPage(),
+                              ),
+                            );
+                          },
+                          child: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                        )
+                      : const SizedBox(),
+                  Expanded(
+                    child: Stories(
+                      displayProgress: true,
+                      storyItemList: [
+                        // First group of stories
+                        StoryItem(
+                            name: "",
+                            thumbnail: const NetworkImage(
+                              "https://wallpaperaccess.com/full/16568.png",
+                            ),
+                            stories: [
+                              // First story
+                              Scaffold(
+                                body: Container(
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                        "https://wallpaperaccess.com/full/16568.png",
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // Second story in first group
+                              const Scaffold(
+                                body: Center(
+                                  child: Text(
+                                    "Second story in first group !",
+                                    style: TextStyle(
+                                      color: Color(0xff777777),
+                                      fontSize: 25,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ]),
+                        // Second story group
+                        StoryItem(
+                          name: "",
+                          thumbnail: const NetworkImage(
+                            "https://www.shareicon.net/data/512x512/2017/03/29/881758_cup_512x512.png",
+                          ),
+                          stories: [
+                            const Scaffold(
+                              body: Center(
+                                child: Text(
+                                  "That's it, Folks !",
+                                  style: TextStyle(
+                                    color: Color(0xff777777),
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                          //3rd story group
+                        ),
+                        StoryItem(
+                          name: "",
+                          thumbnail: const NetworkImage(
+                            "https://www.shareicon.net/data/512x512/2017/03/29/881758_cup_512x512.png",
+                          ),
+                          stories: [
+                            const Scaffold(
+                              body: Center(
+                                child: Text(
+                                  "That's it, Folks !",
+                                  style: TextStyle(
+                                    color: Color(0xff777777),
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               Expanded(
                 child: Container(
                   decoration: const BoxDecoration(
                     color: Color(0xFFeecfff),
                     borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(35),
-                        topRight: Radius.circular(35)),
+                      topLeft: Radius.circular(35),
+                      topRight: Radius.circular(35),
+                    ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: ListView.builder(
-                      itemCount: departments.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: GestureDetector(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const TopicsPage(),
-                              ),
-                            ),
-                            child: SizedBox(
-                              height: 65,
-                              child: Card( 
-                                child: ListTile(
-                                  leading: const Icon(Icons.album),
-                                  trailing: const Icon(CupertinoIcons.forward),
-                                  title: Padding(
-                                    padding: const EdgeInsets.all(7.0),
-                                    child: Text(
-                                      departments[index],
-                                      style: const TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 20),
+                      const Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                          'Departments',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: ListView.builder(
+                            itemCount: departments.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: GestureDetector(
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const TopicsPage(),
+                                    ),
+                                  ),
+                                  child: SizedBox(
+                                    height: 65,
+                                    child: Card(
+                                      child: ListTile(
+                                        leading: const Icon(Icons.album),
+                                        trailing:
+                                            const Icon(CupertinoIcons.forward),
+                                        title: Padding(
+                                          padding: const EdgeInsets.all(7.0),
+                                          child: Text(
+                                            departments[index],
+                                            style: const TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ]),
       ),
-      floatingActionButton: Wrap(
-        direction: Axis.vertical,
-        children: <Widget>[
-          userType == "Teacher"
-              ? FloatingActionButton(
-                  backgroundColor: const Color(0xffb152e8),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const TeacherPage(),
-                      ),
-                    );
-                  },
-                  child: const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  ),
-                )
-              : const SizedBox(),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
-            child: FloatingActionButton(
-              backgroundColor: const Color(0xffb152e8),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ChatPage(),
-                  ),
-                );
-              },
-              child: const Icon(
-                CupertinoIcons.chat_bubble_2_fill,
-                color: Colors.white,
-              ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xffb152e8),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ChatPage(),
             ),
-          )
-        ],
+          );
+        },
+        child: const Icon(
+          CupertinoIcons.chat_bubble_2_fill,
+          color: Colors.white,
+        ),
       ),
     );
   }
