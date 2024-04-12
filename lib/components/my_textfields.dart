@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 
 class MyTextfields extends StatelessWidget {
-  final controller;
+  final TextEditingController controller;
   final String hintText;
   final bool obscureText;
   final Icon inputIcon;
+  final String? Function(String? text)? validator;
 
-  const MyTextfields({
+  MyTextfields({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
     required this.inputIcon,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35),
-      child: TextField(
+      child: TextFormField(
         style: const TextStyle(color: Color.fromARGB(255, 14, 13, 13)),
         controller: controller,
+        validator: validator,
         obscureText: obscureText,
         decoration: InputDecoration(
             prefixIcon: inputIcon,

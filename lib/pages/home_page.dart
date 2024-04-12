@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/pages/chat_page.dart';
-import 'package:flutter_new/pages/teacher_page.dart';
+// import 'package:flutter_new/pages/teacher_page.dart';
 import 'package:flutter_new/pages/topics_page.dart';
 import 'package:flutter_new/project/routes/app_route_constants.dart';
 import 'package:go_router/go_router.dart';
