@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_new/pages/chat_page.dart';
 import 'package:flutter_new/pages/teacher_page.dart';
 import 'package:flutter_new/pages/topics_page.dart';
+import 'package:flutter_new/project/routes/app_route_constants.dart';
+import 'package:go_router/go_router.dart';
 import 'package:stories_for_flutter/stories_for_flutter.dart';
 
 class HomePage extends StatelessWidget {
@@ -38,14 +40,14 @@ class HomePage extends StatelessWidget {
                       ? FloatingActionButton(
                           shape: const CircleBorder(side: BorderSide()),
                           backgroundColor: const Color(0xffeecfff),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const TeacherPage(),
-                              ),
-                            );
+                          onPressed:(){
+                             GoRouter.of(context).pushNamed(MyAppRouteConstant.teacher_pageRouteName);
+                              // MaterialPageRoute(
+                              //   builder: (context) => const TeacherPage(),
+                              // ),
+                           
                           },
+
                           child: const Icon(
                             Icons.add,
                             color: Colors.white,

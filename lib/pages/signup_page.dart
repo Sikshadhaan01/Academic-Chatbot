@@ -3,6 +3,8 @@ import 'package:flutter_new/components/my_textfields.dart';
 import 'package:flutter_new/pages/home_page.dart';
 import 'package:flutter_new/pages/login_page.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_new/project/routes/app_route_constants.dart';
+import 'package:go_router/go_router.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -61,7 +63,7 @@ class _SignupPageState extends State<SignupPage> {
                   color: Color.fromARGB(255, 169, 19, 210)),
             ),
             const SizedBox(
-              height: 50,
+              height: 20,
             ),
             MyTextfields(
               controller: usernamecontroller,
@@ -73,7 +75,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             MyTextfields(
               controller: emailcontroller,
@@ -85,7 +87,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             MyTextfields(
               controller: passwordcontroller,
@@ -97,7 +99,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             MyTextfields(
               controller: confirmpasswordcontroller,
@@ -105,7 +107,7 @@ class _SignupPageState extends State<SignupPage> {
               obscureText: true,
               inputIcon: const Icon(
                 Icons.key,
-                size: 20,
+                size: 15,
               ),
             ),
             const SizedBox(
@@ -139,12 +141,9 @@ class _SignupPageState extends State<SignupPage> {
               height: 10,
             ),
             GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomePage(),
-                ),
-              ),
+              onTap:(){
+                             GoRouter.of(context).pushNamed(MyAppRouteConstant.home_pageRouteName);
+              },
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.black,
@@ -163,7 +162,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            // const SizedBox(height: 30),
             Text.rich(TextSpan(children: [
               const TextSpan(
                 text: "Already have an account?",
@@ -185,12 +184,14 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginPage(),
-                        ),
-                      );
+                      GoRouter.of(context).pushNamed(MyAppRouteConstant.login_pageRouteName);
+                      // context.goNamed(MyAppRouteConstant.login_pageRouteName);
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => LoginPage(),
+                      //   ),
+                      // );
                     })
             ]))
           ],

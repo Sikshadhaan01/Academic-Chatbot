@@ -6,6 +6,8 @@ import 'package:flutter_new/components/my_textfields.dart';
 import 'package:flutter_new/pages/fpassword_page.dart';
 import 'package:flutter_new/pages/home_page.dart';
 import 'package:flutter_new/pages/signup_page.dart';
+import 'package:flutter_new/project/routes/app_route_constants.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -105,12 +107,11 @@ class LoginPage extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 30),
                 child: Align(
                   alignment: Alignment.bottomRight,
+                  
                   child: GestureDetector(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const FpasswordPage(),
-                        )),
+                    onTap:(){
+                             GoRouter.of(context).pushNamed(MyAppRouteConstant.fpassword_pageRouteName);
+              },
                     child: const Text(
                       "Forgot Password?",
                       style: TextStyle(
@@ -128,12 +129,12 @@ class LoginPage extends StatelessWidget {
               //   onTap: signUserIn,
               // )
               GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(),
-                  ),
-                ),
+                 onTap:(){
+                             GoRouter.of(context).pushNamed(MyAppRouteConstant.home_pageRouteName);
+              },
+                
+            
+                          
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.black,
@@ -151,7 +152,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
+               ),
               const SizedBox(height: 30),
 
               Text.rich(TextSpan(children: [
@@ -175,12 +176,13 @@ class LoginPage extends StatelessWidget {
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignupPage(),
-                          ),
-                        );
+                        GoRouter.of(context).pushNamed(MyAppRouteConstant.signup_pageRouteName);
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => const SignupPage(),
+                        //   ),
+                        // );
                       })
               ]))
             ],
