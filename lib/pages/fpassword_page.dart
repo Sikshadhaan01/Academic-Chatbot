@@ -8,7 +8,7 @@ class FpasswordPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          color: Color.fromARGB(255, 70, 192, 151),
+          color: Color(0xffeecfff),
         ),
         child: Stack(
           children: [
@@ -35,8 +35,21 @@ class FpasswordPage extends StatelessWidget {
                         ), //BoxShadow
                       ],
                       borderRadius: BorderRadius.all(Radius.circular(8))),
-                  child: const Center(
-                    child: Icon(Icons.lock),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: const Column( mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.mail,size: 40.0,),
+                          SizedBox(height: 10),
+                          TextField(
+                            decoration: InputDecoration(hintText: "Enter your Email",enabledBorder: OutlineInputBorder()),
+                          ),
+                          SizedBox(height: 10,),
+                          
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               )),

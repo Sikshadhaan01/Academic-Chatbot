@@ -5,9 +5,14 @@ class TeacherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("text"),backgroundColor: Color(0xffbe74ff),
-    ),
-     
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("text"),
+        backgroundColor: Color(0xffbe74ff),
+      ),
+      body: Center(
+          child: FloatingActionButton.extended(
+              onPressed: () {}, label: Text("Add"))),
     );
   }
 }

@@ -3,9 +3,6 @@ import 'dart:html';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/components/my_textfields.dart';
-// import 'package:flutter_new/pages/fpassword_page.dart';
-// import 'package:flutter_new/pages/home_page.dart';
-// import 'package:flutter_new/pages/signup_page.dart';
 import 'package:flutter_new/project/routes/app_route_constants.dart';
 import 'package:go_router/go_router.dart';
 

@@ -5,6 +5,7 @@ import 'package:flutter_new/pages/login_page.dart';
 import 'package:flutter_new/pages/signup_page.dart';
 import 'package:flutter_new/pages/teacher_page.dart';
 import 'package:flutter_new/pages/topics_page.dart';
+import 'package:flutter_new/pages/fpassword_page.dart';
 import 'package:flutter_new/project/routes/app_route_constants.dart';
 import 'package:go_router/go_router.dart';
 
@@ -57,7 +58,7 @@ GoRouter router=GoRouter(
       name: MyAppRouteConstant.fpassword_pageRouteName,
       path: '/fpassword_page',
       pageBuilder: (context, state) {
-        return MaterialPage(child:ChatPage());
+        return MaterialPage(child:FpasswordPage());
       },
     )
   ]
