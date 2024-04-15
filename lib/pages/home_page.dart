@@ -34,33 +34,43 @@ class HomePage extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 20),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   userType == "Teacher"
-                      ? FloatingActionButton(
-                          shape: const CircleBorder(side: BorderSide()),
-                          backgroundColor: const Color(0xffeecfff),
-                          onPressed:(){
-                             GoRouter.of(context).pushNamed(MyAppRouteConstant.teacher_pageRouteName);
-                              // MaterialPageRoute(
-                              //   builder: (context) => const TeacherPage(),
-                              // ),
-                           
-                          },
-
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.white,
+                      ? Column(
+                        children: [ SizedBox(width: 10,),
+                          Container(height: 60,width: 60,
+                            child: FloatingActionButton(
+                                shape: const CircleBorder(side: BorderSide()),
+                                backgroundColor: const Color(0xffeecfff),
+                                onPressed:(){
+                                   GoRouter.of(context).pushNamed(MyAppRouteConstant.teacher_pageRouteName);
+                                    // MaterialPageRoute(
+                                    //   builder: (context) => const TeacherPage(),
+                                    // ),
+                                 
+                                },
+                            
+                                child: const Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                ),
+                              ),
                           ),
-                        )
+                          SizedBox(height: 5),
+                          Text("Add")
+                           
+                        ],
+                      )
                       : const SizedBox(),
+                      SizedBox(width: 5),
                   Expanded(
                     child: Stories(
                       displayProgress: true,
                       storyItemList: [
                         // First group of stories
                         StoryItem(
-                            name: "",
+                            name: "Story 1",
                             thumbnail: const NetworkImage(
                               "https://wallpaperaccess.com/full/16568.png",
                             ),
@@ -93,7 +103,7 @@ class HomePage extends StatelessWidget {
                             ]),
                         // Second story group
                         StoryItem(
-                          name: "",
+                          name: "Story 2",
                           thumbnail: const NetworkImage(
                             "https://www.shareicon.net/data/512x512/2017/03/29/881758_cup_512x512.png",
                           ),
@@ -113,7 +123,7 @@ class HomePage extends StatelessWidget {
                           //3rd story group
                         ),
                         StoryItem(
-                          name: "",
+                          name: "Story 3",
                           thumbnail: const NetworkImage(
                             "https://www.shareicon.net/data/512x512/2017/03/29/881758_cup_512x512.png",
                           ),
@@ -148,7 +158,7 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 25),
                       const Align(
                         alignment: Alignment.topCenter,
                         child: Text(
@@ -159,6 +169,7 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      SizedBox(height: 10,),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
