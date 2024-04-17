@@ -6,6 +6,9 @@ class FpasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xffeecfff),
+      ),
       body: Container(
         decoration: const BoxDecoration(
           color: Color(0xffeecfff),
@@ -38,15 +41,36 @@ class FpasswordPage extends StatelessWidget {
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: const Column( mainAxisAlignment: MainAxisAlignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.mail,size: 40.0,),
+                          Icon(
+                            Icons.mail,
+                            size: 40.0,
+                          ),
                           SizedBox(height: 10),
                           TextField(
-                            decoration: InputDecoration(hintText: "Enter your Email",enabledBorder: OutlineInputBorder()),
+                            decoration: InputDecoration(
+                              labelText: "Email",
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 10, 7, 7),
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 5, 5, 5)),
+                              ),
+                            ),
                           ),
-                          SizedBox(height: 10,),
-                          
+                          SizedBox(
+                            height: 15,
+                          ),
+                          ElevatedButton(
+                              onPressed: () {},
+                              child: Text("Submit"),
+                              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xffeecfff))))
                         ],
                       ),
                     ),

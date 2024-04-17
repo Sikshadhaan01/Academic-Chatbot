@@ -78,7 +78,7 @@ class _SignupPageState extends State<SignupPage> {
                     }
                     return null;
                   },
-                  hintText: "Username",
+                  labelText: "Username",
                   obscureText: false,
                   inputIcon: const Icon(
                     Icons.person,
@@ -96,7 +96,7 @@ class _SignupPageState extends State<SignupPage> {
                     }
                     return null;
                   },
-                  hintText: "Email",
+                  labelText: "Email",
                   obscureText: false,
                   inputIcon: const Icon(
                     Icons.email,
@@ -109,12 +109,12 @@ class _SignupPageState extends State<SignupPage> {
                 MyTextfields(
                   controller: passwordcontroller,
                   validator: (text) {
-                    if(text!.isEmpty){
+                    if (text!.isEmpty) {
                       return "Enter Valid Details";
                     }
                     return null;
                   },
-                  hintText: "Password",
+                  labelText: "Password",
                   obscureText: true,
                   inputIcon: const Icon(
                     Icons.key,
@@ -127,12 +127,12 @@ class _SignupPageState extends State<SignupPage> {
                 MyTextfields(
                   controller: confirmpasswordcontroller,
                   validator: (text) {
-                    if(text!.isEmpty){
+                    if (text!.isEmpty) {
                       return "Enter Valid Details";
                     }
                     return null;
                   },
-                  hintText: "Confirm Password",
+                  labelText: "Confirm Password",
                   obscureText: true,
                   inputIcon: const Icon(
                     Icons.key,

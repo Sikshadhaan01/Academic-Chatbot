@@ -38,32 +38,35 @@ class HomePage extends StatelessWidget {
                 children: [
                   userType == "Teacher"
                       ? Column(
-                        children: [ SizedBox(width: 10,),
-                          Container(height: 60,width: 60,
-                            child: FloatingActionButton(
+                          children: [
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              height: 60,
+                              width: 60,
+                              child: FloatingActionButton(
                                 shape: const CircleBorder(side: BorderSide()),
                                 backgroundColor: const Color(0xffeecfff),
-                                onPressed:(){
-                                   GoRouter.of(context).pushNamed(MyAppRouteConstant.teacher_pageRouteName);
-                                    // MaterialPageRoute(
-                                    //   builder: (context) => const TeacherPage(),
-                                    // ),
-                                 
+                                onPressed: () {
+                                  GoRouter.of(context).pushNamed(
+                                      MyAppRouteConstant.teacher_pageRouteName);
+                                  // MaterialPageRoute(
+                                  //   builder: (context) => const TeacherPage(),
+                                  // ),
                                 },
-                            
                                 child: const Icon(
                                   Icons.add,
                                   color: Colors.white,
                                 ),
                               ),
-                          ),
-                          SizedBox(height: 5),
-                          Text("Add")
-                           
-                        ],
-                      )
+                            ),
+                            SizedBox(height: 5),
+                            Text("Add")
+                          ],
+                        )
                       : const SizedBox(),
-                      SizedBox(width: 5),
+                  SizedBox(width: 5),
                   Expanded(
                     child: Stories(
                       displayProgress: true,
@@ -141,6 +144,120 @@ class HomePage extends StatelessWidget {
                             ),
                           ],
                         ),
+                        StoryItem(
+                          name: "Story 3",
+                          thumbnail: const NetworkImage(
+                            "https://www.shareicon.net/data/512x512/2017/03/29/881758_cup_512x512.png",
+                          ),
+                          stories: [
+                            const Scaffold(
+                              body: Center(
+                                child: Text(
+                                  "That's it, Folks !",
+                                  style: TextStyle(
+                                    color: Color(0xff777777),
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        StoryItem(
+                          name: "Story 3",
+                          thumbnail: const NetworkImage(
+                            "https://www.shareicon.net/data/512x512/2017/03/29/881758_cup_512x512.png",
+                          ),
+                          stories: [
+                            const Scaffold(
+                              body: Center(
+                                child: Text(
+                                  "That's it, Folks !",
+                                  style: TextStyle(
+                                    color: Color(0xff777777),
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        StoryItem(
+                          name: "Story 3",
+                          thumbnail: const NetworkImage(
+                            "https://www.shareicon.net/data/512x512/2017/03/29/881758_cup_512x512.png",
+                          ),
+                          stories: [
+                            const Scaffold(
+                              body: Center(
+                                child: Text(
+                                  "That's it, Folks !",
+                                  style: TextStyle(
+                                    color: Color(0xff777777),
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        StoryItem(
+                          name: "Story 3",
+                          thumbnail: const NetworkImage(
+                            "https://www.shareicon.net/data/512x512/2017/03/29/881758_cup_512x512.png",
+                          ),
+                          stories: [
+                            const Scaffold(
+                              body: Center(
+                                child: Text(
+                                  "That's it, Folks !",
+                                  style: TextStyle(
+                                    color: Color(0xff777777),
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        StoryItem(
+                          name: "Story 3",
+                          thumbnail: const NetworkImage(
+                            "https://www.shareicon.net/data/512x512/2017/03/29/881758_cup_512x512.png",
+                          ),
+                          stories: [
+                            const Scaffold(
+                              body: Center(
+                                child: Text(
+                                  "That's it, Folks !",
+                                  style: TextStyle(
+                                    color: Color(0xff777777),
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        StoryItem(
+                          name: "Story 3",
+                          thumbnail: const NetworkImage(
+                            "https://www.shareicon.net/data/512x512/2017/03/29/881758_cup_512x512.png",
+                          ),
+                          stories: [
+                            const Scaffold(
+                              body: Center(
+                                child: Text(
+                                  "That's it, Folks !",
+                                  style: TextStyle(
+                                    color: Color(0xff777777),
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -169,7 +286,9 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),

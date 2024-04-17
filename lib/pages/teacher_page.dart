@@ -8,11 +8,16 @@ class TeacherPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("text"),
-        backgroundColor: Color(0xffbe74ff),
+        backgroundColor: Colors.white,
       ),
-      body: Center(
-          child: FloatingActionButton.extended(
-              onPressed: () {}, label: Text("Add"))),
+      bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+              decoration: InputDecoration(
+                  hintText: "Enter..",
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  suffixIcon:
+                      IconButton(onPressed: () {}, icon: Icon(Icons.send))))),
     );
   }
 }
