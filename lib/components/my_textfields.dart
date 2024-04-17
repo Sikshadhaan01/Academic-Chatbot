@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 class MyTextfields extends StatelessWidget {
   final TextEditingController controller;
-  final String hintText;
+  // final String hintText;
   final bool obscureText;
   final Icon inputIcon;
+  final String labelText;
   final String? Function(String? text)? validator;
 
   MyTextfields({
-    super.key,
+    super.key, 
     required this.controller,
-    required this.hintText,
+    // required this.hintText,
+    required this.labelText,
     required this.obscureText,
     required this.inputIcon,
     this.validator,
@@ -37,7 +39,8 @@ class MyTextfields extends StatelessWidget {
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey),
             ),
-            hintText: hintText,
+            labelText: labelText,
+            // hintText: hintText,
             hintStyle: const TextStyle(color: Color.fromARGB(255, 7, 5, 5))),
       ),
     );

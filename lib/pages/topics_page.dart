@@ -22,9 +22,8 @@ class _TopicsPageState extends State<TopicsPage> {
 
       //   );
       // }, separatorBuilder: (ctx,index){
-        
+
       //   return Divider();
-        
 
       // }, itemCount:6 ),
       // ) ,
@@ -35,7 +34,7 @@ class _TopicsPageState extends State<TopicsPage> {
       //     child: Column(
       //       crossAxisAlignment: CrossAxisAlignment.start,
       //       children: [
-              
+
       //       ],
       //       // children: [
       //       //   Text(
@@ -80,24 +79,27 @@ class _TopicsPageState extends State<TopicsPage> {
     );
   }
 }
-class Item{
+
+class Item {
   Item({
     required this.expandedValue,
     required this.headerValue,
-    this.isExpanded=false,
+    this.isExpanded = false,
   });
   String expandedValue;
   String headerValue;
   bool isExpanded;
 }
+
 List<Item> generateItems(int numberOfItems) {
   return List<Item>.generate(numberOfItems, (int index) {
     return Item(
-      headerValue: 'semester${index+1}',
-      expandedValue: 'subjects${index+1}',
+      headerValue: 'semester${index + 1}',
+      expandedValue: 'subjects${index + 1}',
     );
   });
 }
+
 class ExpansionPanelListExample extends StatefulWidget {
   const ExpansionPanelListExample({super.key});
 
@@ -133,17 +135,17 @@ class _ExpansionPanelListExampleState extends State<ExpansionPanelListExample> {
             );
           },
           body: ListTile(
-              title: Text(item.expandedValue),
-              // subtitle:
-              //     const Text('To delete this panel, tap the trash can icon'),
-              // trailing: const Icon(Icons.delete),
-              // onTap: () {
-              //   setState(() {
-              //     _data.removeWhere((Item currentItem) => item == currentItem);
-              //   }
-              //   );
-              // }
-              ),
+            title: Text(item.expandedValue),
+            // subtitle:
+            //     const Text('To delete this panel, tap the trash can icon'),
+            // trailing: const Icon(Icons.delete),
+            // onTap: () {
+            //   setState(() {
+            //     _data.removeWhere((Item currentItem) => item == currentItem);
+            //   }
+            //   );
+            // }
+          ),
           isExpanded: item.isExpanded,
         );
       }).toList(),

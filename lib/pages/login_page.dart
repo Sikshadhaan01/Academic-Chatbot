@@ -69,7 +69,7 @@ class LoginPage extends StatelessWidget {
                     }
                     return null;
                   },
-                  hintText: "Email",
+                  labelText: "Email",
                   obscureText: false,
                   inputIcon: const Icon(
                     Icons.email,
@@ -103,7 +103,7 @@ class LoginPage extends StatelessWidget {
                     }
                     return null;
                   },
-                  hintText: "Password",
+                  labelText: "Password",
                   obscureText: true,
                   inputIcon: const Icon(
                     Icons.lock,
