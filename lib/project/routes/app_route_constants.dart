@@ -7,6 +7,7 @@ static const String login_pageRouteName='login_page';
 static const String teacher_pageRouteName='teacher_page';
 static const String topics_pageRouteName='topics_page';
 static const String signup_pageRouteName='signup_page';
+static const String otp_pageRouteName='otp_page';
 
 
 }

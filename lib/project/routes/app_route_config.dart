@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_new/pages/chat_page.dart';
 import 'package:flutter_new/pages/home_page.dart';
 import 'package:flutter_new/pages/login_page.dart';
+import 'package:flutter_new/pages/otp_page.dart';
 import 'package:flutter_new/pages/signup_page.dart';
 import 'package:flutter_new/pages/teacher_page.dart';
 import 'package:flutter_new/pages/topics_page.dart';
@@ -58,6 +59,13 @@ class MyAppRouter {
       path: '/fpassword_page',
       pageBuilder: (context, state) {
         return MaterialPage(child: FpasswordPage());
+      },
+    ),
+    GoRoute(
+      name: MyAppRouteConstant.otp_pageRouteName,
+      path: '/otp_page',
+      pageBuilder: (context, state) {
+        return MaterialPage(child: Otppage());
       },
     )
   ]);
