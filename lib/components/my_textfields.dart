@@ -30,15 +30,15 @@ class MyTextfields extends StatelessWidget {
         decoration: InputDecoration(
             prefixIcon: inputIcon,
             prefixIconColor: const Color.fromARGB(255, 12, 9, 9),
-            enabledBorder: OutlineInputBorder(
+            border: OutlineInputBorder(
               borderSide: const BorderSide(
                 color: Color.fromARGB(255, 10, 7, 7),
               ),
               borderRadius: BorderRadius.circular(8),
             ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey),
-            ),
+            // focusedBorder: const OutlineInputBorder(
+            //   borderSide: BorderSide(color: Colors.grey),
+            // ),
             labelText: labelText,
             // hintText: hintText,
             hintStyle: const TextStyle(color: Color.fromARGB(255, 7, 5, 5))),
