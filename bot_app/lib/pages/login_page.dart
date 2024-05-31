@@ -1,21 +1,32 @@
-import 'dart:html';
+import 'dart:convert';
+// import 'dart:html';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_new/components/my_textfields.dart';
 import 'package:flutter_new/project/routes/app_route_constants.dart';
+import 'package:flutter_new/providers/user_provider.dart';
+import 'package:flutter_new/services/common_service.dart';
+import 'package:flutter_new/services/user_service.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginPage extends StatelessWidget {
-  final formKey = GlobalKey<FormState>();
-
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final formKey = GlobalKey<FormState>();
+
   final emailcontroller = TextEditingController();
+
   final passwordcontroller = TextEditingController();
 
   // void signUserIn(){}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,37 +40,8 @@ class LoginPage extends StatelessWidget {
           child: Form(
             key: formKey,
             child: Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 150),
-
-                //login
-                const Text(
-                  "Login",
-                  style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 185, 44, 224),
-                      fontFamily: AutofillHints.birthdayYear),
-                ),
-
-                const SizedBox(height: 50),
-
-                // Row(
-                //   children: [
-                //     Padding(
-                //       padding: EdgeInsets.only(left: 25),
-                //       child: Text(
-                //         "Email",
-                //         style: TextStyle(
-                //             fontSize: 15,
-                //             fontWeight: FontWeight.bold,
-                //             color: Colors.white),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-
                 //email
                 MyTextfields(
                   controller: emailcontroller,
@@ -116,25 +98,25 @@ class LoginPage extends StatelessWidget {
                 ),
                 //forgot password
 
-                Padding(
-                  padding: const EdgeInsets.only(right: 30),
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        GoRouter.of(context).pushNamed(
-                            MyAppRouteConstant.fpassword_pageRouteName);
-                      },
-                      child: const Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                      ),
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 30),
+                //   child: Align(
+                //     alignment: Alignment.bottomRight,
+                //     child: GestureDetector(
+                //       onTap: () {
+                //         GoRouter.of(context).pushNamed(
+                //             MyAppRouteConstant.fpassword_pageRouteName);
+                //       },
+                //       child: const Text(
+                //         "Forgot Password?",
+                //         style: TextStyle(
+                //             fontSize: 15,
+                //             fontWeight: FontWeight.bold,
+                //             color: Colors.black),
+                //       ),
+                //     ),
+                //   ),
+                // ),
 
                 const SizedBox(height: 30),
 
@@ -144,8 +126,7 @@ class LoginPage extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     if (formKey.currentState!.validate()) {
-                      GoRouter.of(context)
-                          .pushNamed(MyAppRouteConstant.home_pageRouteName);
+                      login();
                     }
                   },
                   child: Container(
@@ -153,7 +134,7 @@ class LoginPage extends StatelessWidget {
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    width: 345,
+                    width: 250,
                     height: 55,
                     child: const Center(
                       child: Text(
@@ -205,5 +186,22 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  login() async {
+    var obj = {
+      "email": emailcontroller.text,
+      "password": passwordcontroller.text
+    };
+    var response = await UserService().login(obj);
+    bool success = CommonService().handleResponseMessage(context, response);
+    Provider.of<UserProvider>(context, listen: false)
+        .setUserInfo(response['result'][0]);
+    if (success) {
+      SharedPreferences.getInstance().then((prefs) {
+        prefs.setString("userInfo", json.encode(response['result'][0]));
+        GoRouter.of(context).pushNamed(MyAppRouteConstant.home_pageRouteName);
+      });
+    }
   }
 }

@@ -37,9 +37,19 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework import permissions
 from rest_framework.decorators import api_view, permission_classes
-
+import random
 # Create your views here.
 # model = tf.keras.models.load_model("django_backend/models/model.h5")
+
+fallbackAnswers : list = [
+    "I'm sorry, I didn't quite understand that. Could you please rephrase or provide more details?",
+    "I apologize for any confusion. Let me try to help you better. Could you clarify your request?",
+    "It seems like I missed something. Could you give me a bit more context?"
+]
+
+def getFallbackAns():
+    secure_random = random.SystemRandom()
+    return secure_random.choice(fallbackAnswers)
 
 def home(req):
     # print(dir(settings))
@@ -57,13 +67,13 @@ def getData(req):
         answer = {"query":req.data['query'], "answer":value}
         return Response(answer)
     except ValueError:
-        return Response({"error":"Cant understand you"})
+        return Response({"answer":getFallbackAns(),"query":req.data['query']})
     except KeyError:
         answer = externalPrediction(req.data['query'])
         if(answer['Abstract']!=""):
             return Response({"query":req.data['query'], "answer":answer['Abstract']})
         else:
-            return Response({"error":"Cant understand you"})
+            return Response({"answer":getFallbackAns(), "query":req.data['query']})
         
     # finally:
     #     return Response({"error":"Cant understand you, ask something else"})
@@ -82,7 +92,7 @@ class BotView(APIView):
 
 maxlen_answers=74
 maxlen_questions=22
-VOCAB_SIZE=1894
+VOCAB_SIZE=6364
 encoder_inputs = Input(shape=(maxlen_questions ,))
 encoder_embedding = Embedding(VOCAB_SIZE, 200 , mask_zero=True) (encoder_inputs)
 encoder_outputs , state_h , state_c = LSTM(200 , return_state=True)(encoder_embedding)
@@ -203,7 +213,7 @@ sendQueryDDGUrl: str = "https://api.duckduckgo.com/?format=json&pretty=1&q="
 def externalPrediction(query:str):
     proccessedQuery = query.replace("?","")
     response = requests.get(sendQueryDDGUrl+proccessedQuery)
-    print(response.json())
+    # print(response.json())
     return response.json()
     
     

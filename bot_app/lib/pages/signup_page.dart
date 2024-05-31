@@ -4,6 +4,8 @@ import 'package:flutter_new/components/my_textfields.dart';
 // import 'package:flutter_new/pages/login_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_new/project/routes/app_route_constants.dart';
+import 'package:flutter_new/services/common_service.dart';
+import 'package:flutter_new/services/user_service.dart';
 import 'package:go_router/go_router.dart';
 
 class SignupPage extends StatefulWidget {
@@ -24,9 +26,6 @@ class _SignupPageState extends State<SignupPage> {
 
   final confirmpasswordcontroller = TextEditingController();
 
-  // List<String> items = ["item1", "item2"];
-
-  // String? selecteditem = "item1";
 
   String dropdownValue = 'student';
 
@@ -47,28 +46,7 @@ class _SignupPageState extends State<SignupPage> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 140,
-                ),
-                const Text(
-                  "Sign Up",
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 169, 19, 210),
-                      fontFamily: AutofillHints.birthdayYear),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  "Create your account",
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 169, 19, 210)),
-                ),
-                const SizedBox(
-                  height: 20,
+                  height: 50,
                 ),
                 MyTextfields(
                   controller: usernamecontroller,
@@ -124,47 +102,8 @@ class _SignupPageState extends State<SignupPage> {
                 const SizedBox(
                   height: 15,
                 ),
-                MyTextfields(
-                  controller: confirmpasswordcontroller,
-                  validator: (text) {
-                    if (text!.isEmpty) {
-                      return "Enter Valid Details";
-                    }
-                    return null;
-                  },
-                  labelText: "Confirm Password",
-                  obscureText: true,
-                  inputIcon: const Icon(
-                    Icons.key,
-                    size: 15,
-                  ),
-                ),
                 const SizedBox(
                   height: 5,
-                ),
-                DropdownButton<String>(
-                  itemHeight: null,
-                  //underline: null,
-                  value: dropdownValue,
-                  items: <String>['student', 'teacher']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black,
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
-                  },
                 ),
                 const SizedBox(
                   height: 10,
@@ -172,8 +111,7 @@ class _SignupPageState extends State<SignupPage> {
                 GestureDetector(
                   onTap: () {
                     if (formKey.currentState!.validate()) {
-                      GoRouter.of(context)
-                          .pushNamed(MyAppRouteConstant.home_pageRouteName);
+                      signUp();
                     }
                   },
                   child: Container(
@@ -181,7 +119,7 @@ class _SignupPageState extends State<SignupPage> {
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    width: 345,
+                    width: 250,
                     height: 55,
                     child: const Center(
                       child: Text(
@@ -217,9 +155,8 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          GoRouter.of(context).pushNamed(
-                              MyAppRouteConstant.login_pageRouteName);
-                          // context.goNamed(MyAppRouteConstant.login_pageRouteName);
+                          context
+                              .goNamed(MyAppRouteConstant.login_pageRouteName);
                           // Navigator.push(
                           //   context,
                           //   MaterialPageRoute(
@@ -234,5 +171,18 @@ class _SignupPageState extends State<SignupPage> {
         ),
       ),
     );
+  }
+
+  signUp() async {
+    var obj = {
+      "userName": usernamecontroller.text,
+      "email": emailcontroller.text,
+      "password": passwordcontroller.text
+    };
+    var response = await UserService().signup(obj);
+    bool success = CommonService().handleResponseMessage(context, response);
+    if (success) {
+      GoRouter.of(context).pushNamed(MyAppRouteConstant.home_pageRouteName);
+    }
   }
 }
