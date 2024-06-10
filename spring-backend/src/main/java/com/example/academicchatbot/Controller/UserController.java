@@ -17,16 +17,16 @@ public class UserController {
     UserService userService;
     @PostMapping(value = "sign-up")
     public Response signUp(@RequestBody UserEntity insert) {
-        String message = userService.signUp(insert);
-        if (message.equals("sign up successfully")) {
+        UserEntity message = userService.signUp(insert);
+        if (message != null) {
             Response response = new Response();
-            response.setMessage(message);
+            response.setMessage("Sign up success");
             response.setStatusCode(200);
-            response.setResult(new ArrayList<>());
+            response.setResult(List.of(message));
             return response;
         } else {
             Response response = new Response();
-            response.setMessage(message);
+            response.setMessage("User already exist");
             response.setStatusCode(400);
             response.setResult(new ArrayList<>());
             return response;

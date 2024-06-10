@@ -11,14 +11,14 @@ import java.util.List;
 public class UserService {
     @Autowired
     UserRepository userRepository;
-    public String signUp(UserEntity insert) {
+    public UserEntity signUp(UserEntity insert) {
         List<UserEntity> existingUser = userRepository.findUserByName(insert.getUserName());
         if (existingUser.isEmpty()) {
             insert.setUserRole("student");
-            userRepository.save(insert);
-            return ("sign up successfully");
+
+            return userRepository.save(insert);
         } else {
-            return ("User already exist");
+            return null;
         }
     }
     public UserEntity LogIn(UserEntity login) {
