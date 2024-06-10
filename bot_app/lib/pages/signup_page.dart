@@ -1,12 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_new/components/my_textfields.dart';
 // import 'package:flutter_new/pages/home_page.dart';
 // import 'package:flutter_new/pages/login_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_new/project/routes/app_route_constants.dart';
+import 'package:flutter_new/providers/user_provider.dart';
 import 'package:flutter_new/services/common_service.dart';
 import 'package:flutter_new/services/user_service.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignupPage extends StatefulWidget {
   SignupPage({super.key});
@@ -120,7 +125,7 @@ class _SignupPageState extends State<SignupPage> {
                 const SizedBox(
                   height: 15,
                 ),
-                 MyTextfields(
+                MyTextfields(
                   controller: confirmpasswordcontroller,
                   validator: (text) {
                     if (text!.isEmpty) {
@@ -207,27 +212,31 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   signUp() async {
+    var password = passwordcontroller.text;
+    var confirmPassword = confirmpasswordcontroller.text;
 
-     var password = passwordcontroller.text;
-     var confirmPassword = confirmpasswordcontroller.text;
-
-     if(password != confirmPassword){
+    if (password != confirmPassword) {
       // show error msg //
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('password do not match')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('password do not match')));
       return;
-     }
+    }
 
     var obj = {
       "userName": usernamecontroller.text,
       "email": emailcontroller.text,
       "password": passwordcontroller.text,
-      "confirmPassword":confirmpasswordcontroller.text
-      
+      "confirmPassword": confirmpasswordcontroller.text
     };
     var response = await UserService().signup(obj);
     bool success = CommonService().handleResponseMessage(context, response);
+    Provider.of<UserProvider>(context, listen: false)
+        .setUserInfo(response['result'][0]);
     if (success) {
-      GoRouter.of(context).pushNamed(MyAppRouteConstant.home_pageRouteName);
+      SharedPreferences.getInstance().then((prefs) {
+        prefs.setString("userInfo", json.encode(response['result'][0]));
+        GoRouter.of(context).pushNamed(MyAppRouteConstant.home_pageRouteName);
+      });
     }
   }
 }
