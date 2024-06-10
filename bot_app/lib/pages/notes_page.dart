@@ -59,7 +59,8 @@ class _NotesPageState extends State<NotesPage> {
               : SizedBox()
         ],
         backgroundColor: Color(0xffbe74ff),
-        title: Text('Notes'),
+        title: Text('Notes', style: TextStyle(
+                 fontSize: 18, fontWeight: FontWeight.bold,color: Colors.white),),
       ),
       body: _status == 'Uploading...'
           ? Center(
