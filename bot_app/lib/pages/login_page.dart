@@ -41,13 +41,21 @@ class _LoginPageState extends State<LoginPage> {
             key: formKey,
             child: Column(
               children: [
-                const SizedBox(height: 150),
+                const SizedBox(height: 250),
+                Text(
+                  "Login",
+                  style: TextStyle(
+                      color: Colors.purple,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35),
+                ),
+                SizedBox(height: 30),
                 //email
                 MyTextfields(
                   controller: emailcontroller,
                   validator: (text) {
                     if (text!.isEmpty) {
-                      return "Enter Valid Details";
+                      return "Enter Valid Email";
                     }
                     return null;
                   },
@@ -81,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: passwordcontroller,
                   validator: (text) {
                     if (text!.isEmpty) {
-                      return "Enter Valid Details";
+                      return "Enter Valid Password";
                     }
                     return null;
                   },

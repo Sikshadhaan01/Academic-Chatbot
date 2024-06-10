@@ -26,7 +26,6 @@ class _SignupPageState extends State<SignupPage> {
 
   final confirmpasswordcontroller = TextEditingController();
 
-
   String dropdownValue = 'student';
 
   final formKey = GlobalKey<FormState>();
@@ -46,13 +45,32 @@ class _SignupPageState extends State<SignupPage> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 50,
+                  height: 200,
                 ),
+                Text(
+                  "Sign Up",
+                  style: TextStyle(
+                      color: Colors.purple,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "Create your account",
+                  style: const TextStyle(
+                    color: Colors.purple,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                  ),
+                ),
+                SizedBox(height: 30),
                 MyTextfields(
                   controller: usernamecontroller,
                   validator: (text) {
                     if (text!.isEmpty) {
-                      return "Enter Valid Details";
+                      return "Enter Valid Name";
                     }
                     return null;
                   },
@@ -70,7 +88,7 @@ class _SignupPageState extends State<SignupPage> {
                   controller: emailcontroller,
                   validator: (text) {
                     if (text!.isEmpty) {
-                      return "Enter Valid Details";
+                      return "Enter Valid Email";
                     }
                     return null;
                   },
@@ -88,7 +106,7 @@ class _SignupPageState extends State<SignupPage> {
                   controller: passwordcontroller,
                   validator: (text) {
                     if (text!.isEmpty) {
-                      return "Enter Valid Details";
+                      return "Enter Valid Password";
                     }
                     return null;
                   },
@@ -101,6 +119,21 @@ class _SignupPageState extends State<SignupPage> {
                 ),
                 const SizedBox(
                   height: 15,
+                ),
+                 MyTextfields(
+                  controller: confirmpasswordcontroller,
+                  validator: (text) {
+                    if (text!.isEmpty) {
+                      return "Confirm Password";
+                    }
+                    return null;
+                  },
+                  labelText: "Confirm Password",
+                  obscureText: true,
+                  inputIcon: const Icon(
+                    Icons.key,
+                    size: 20,
+                  ),
                 ),
                 const SizedBox(
                   height: 5,
@@ -174,10 +207,22 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   signUp() async {
+
+     var password = passwordcontroller.text;
+     var confirmPassword = confirmpasswordcontroller.text;
+
+     if(password != confirmPassword){
+      // show error msg //
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('password do not match')));
+      return;
+     }
+
     var obj = {
       "userName": usernamecontroller.text,
       "email": emailcontroller.text,
-      "password": passwordcontroller.text
+      "password": passwordcontroller.text,
+      "confirmPassword":confirmpasswordcontroller.text
+      
     };
     var response = await UserService().signup(obj);
     bool success = CommonService().handleResponseMessage(context, response);

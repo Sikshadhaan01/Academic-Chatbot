@@ -56,7 +56,7 @@ class _TopicsPageState extends State<TopicsPage> {
           title: Text(
             'Semesters & Subjects',
             style: TextStyle(
-                letterSpacing: 1, fontSize: 18, fontWeight: FontWeight.bold),
+                letterSpacing: 1, fontSize: 18, fontWeight: FontWeight.bold,color: Colors.white),
           ),
           backgroundColor: Color(0xffbe74ff),
         ),
