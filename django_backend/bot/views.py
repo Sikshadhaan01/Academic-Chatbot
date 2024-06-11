@@ -90,9 +90,9 @@ class BotView(APIView):
 
 
 
-maxlen_answers=155
+maxlen_answers=269
 maxlen_questions=12
-VOCAB_SIZE=3146
+VOCAB_SIZE=3413
 encoder_inputs = Input(shape=(maxlen_questions ,))
 encoder_embedding = Embedding(VOCAB_SIZE, 200 , mask_zero=True) (encoder_inputs)
 encoder_outputs , state_h , state_c = LSTM(200 , return_state=True)(encoder_embedding)

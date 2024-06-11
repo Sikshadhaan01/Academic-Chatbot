@@ -1,0 +1,65 @@
+server:
+  port: 8083
+spring:
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 300MB
+  jpa:
+    hibernate:
+      ddl-auto: none
+  application:
+    name: AcademicChatbot
+    version: 1.0
+  banner:
+    image:
+      location: classpath*:banner.txt
+  thymeleaf:
+    cache: true
+    check-template: true
+    check-template-location: true
+    servlet:
+      content-type: text/html
+  datasource:
+    url: jdbc:mysql://15.207.146.31:3306/academic_chatbot
+    username: nit_user
+    password: nit1234
+    #    url: jdbc:mysql://localhost:3306/true_image
+    #    username: trueImageAdmin
+    #    password: TrueImage$2023
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      validationTimeout: 600000
+      maximumPoolSize: 20
+      connection-timeout: 60000
+    tomcat:
+      validation-query: SELECT 1
+      test-on-borrow: true
+      validation-interval: 30000
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+storage:
+  value: /opt/pv/storage
+  log: ${storage.value}/logs/toy-to-home-logs.log
+#  base-directory: http://localhost:8081
+custom:
+  serverIp: https://files.toytohome.com/
+  serverDir: C:/Servers/Apache24/htdocs/files/
+  siteUrl: http://localhost:8083/
+  appFolder: academic-chat-bot
+  profileDir: ${custom.serverDir}${custom.appFolder}/profile
+  profileUrl: ${custom.serverIp}${custom.appFolder}/profile
+  notesDir: ${custom.serverDir}${custom.appFolder}/notes
+  notesUrl: ${custom.serverIp}${custom.appFolder}/notes
+  announcementDir: ${custom.serverDir}${custom.appFolder}/announcements
+  announcementUrl: ${custom.serverIp}${custom.appFolder}/announcements
+secured: true
+logging:
+  level:
+    org.hibernate.SQL: trace
+    org.hibernate.type: trace
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  file:
+    name: ${storage.log}
